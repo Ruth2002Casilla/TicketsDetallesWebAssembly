@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TicketsDetallesApi.Server.DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var ConStr = builder.Configuration.GetConnectionString("ConStr");
+builder.Services.AddDbContextFactory<Context>(op => op.UseSqlite(ConStr));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -15,6 +21,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//LINEAS NUEVAS PARA ACTIVAR EL CORD
+app.UseCors(options =>
+{
+    options.AllowAnyOrigin(); // Permitir solicitudes desde cualquier origen
+    options.AllowAnyHeader(); // Permitir cualquier encabezado
+    options.AllowAnyMethod(); // Permitir cualquier método HTTP
+});
 
 app.UseHttpsRedirection();
 
