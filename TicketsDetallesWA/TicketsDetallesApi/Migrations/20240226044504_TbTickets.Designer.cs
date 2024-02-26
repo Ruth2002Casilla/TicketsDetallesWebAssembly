@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicketsDetallesApi.Server.DAL;
 
@@ -10,9 +11,11 @@ using TicketsDetallesApi.Server.DAL;
 namespace TicketsDetallesApi.Server.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240226044504_TbTickets")]
+    partial class TbTickets
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
@@ -83,28 +86,6 @@ namespace TicketsDetallesApi.Server.Migrations
                     b.HasKey("TicketId");
 
                     b.ToTable("Tickets");
-                });
-
-            modelBuilder.Entity("BibliotecaModels.Models.TicketsDetalles", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Emisor")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Mensaje")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("TicketId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TicketsDetalle");
                 });
 #pragma warning restore 612, 618
         }

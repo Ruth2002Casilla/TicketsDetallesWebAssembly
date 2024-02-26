@@ -8,5 +8,6 @@ namespace TicketsDetallesApi.Server.DAL
         public Context(DbContextOptions<Context> options) : base(options) { }
         public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Tickets> Tickets { get; set; }
+        public DbSet<TicketsDetalles> TicketsDetalle { get; set; }
     }
 }
