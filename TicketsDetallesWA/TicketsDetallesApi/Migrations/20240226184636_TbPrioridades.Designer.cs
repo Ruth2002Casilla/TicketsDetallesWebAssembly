@@ -11,8 +11,8 @@ using TicketsDetallesApi.Server.DAL;
 namespace TicketsDetallesApi.Server.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240226141959_TbSistema")]
-    partial class TbSistema
+    [Migration("20240226184636_TbPrioridades")]
+    partial class TbPrioridades
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,39 @@ namespace TicketsDetallesApi.Server.Migrations
                     b.HasKey("ClienteId");
 
                     b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("BibliotecaModels.Models.Prioridades", b =>
+                {
+                    b.Property<int>("PrioridadId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DiasCompromiso")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("PrioridadId");
+
+                    b.ToTable("Prioridades");
+                });
+
+            modelBuilder.Entity("BibliotecaModels.Models.Sistema", b =>
+                {
+                    b.Property<int>("SistemaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("SistemaId");
+
+                    b.ToTable("Sistema");
                 });
 
             modelBuilder.Entity("BibliotecaModels.Models.Tickets", b =>
