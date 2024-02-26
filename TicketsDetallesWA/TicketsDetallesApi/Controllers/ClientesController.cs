@@ -44,33 +44,15 @@ namespace TicketsDetallesApi.Server.Controllers
 
         // PUT: api/Clientes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutClientes(int id, Clientes clientes)
+        [HttpPut]
+        public async Task<ActionResult<Clientes>> PutClientes(Clientes clientes)
         {
-            if (id != clientes.ClienteId)
+            if (ClientesExists(clientes.ClienteId))
             {
-                return BadRequest();
+                _context.Clientes.Update(clientes);
             }
-
-            _context.Entry(clientes).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClientesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            await _context.SaveChangesAsync();
+            return Ok(clientes);
         }
 
         // POST: api/Clientes
