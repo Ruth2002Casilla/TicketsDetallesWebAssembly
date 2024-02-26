@@ -32,7 +32,7 @@ namespace BibliotecaModels.Models
 
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [RegularExpression(@"^[A-Z][a-zA-Z\s]*$", ErrorMessage = "Por favor, introduce un Nombre válido")]
-        public string? Solicitadopor { get; set; }
+        public string? SolicitadoPor { get; set; }
 
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [RegularExpression(@"^[A-Z][a-zA-Z\s]*$", ErrorMessage = "Por favor, introduce un Asunto válido")]
