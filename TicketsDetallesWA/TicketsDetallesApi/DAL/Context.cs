@@ -9,5 +9,7 @@ namespace TicketsDetallesApi.Server.DAL
         public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Tickets> Tickets { get; set; }
         public DbSet<TicketsDetalles> TicketsDetalle { get; set; }
+        public DbSet<Prioridades> Prioridades { get; set; }
+        public DbSet<Sistema> Sistema { get; set; }
     }
 }
